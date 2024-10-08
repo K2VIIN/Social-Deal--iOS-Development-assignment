@@ -1,21 +1,16 @@
-//
-//  ContentView.swift
-//  Social Deal -iOS Development assignment
-//
-//  Created by Kevin Schuren on 07/10/2024.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var cardViewModel = DealCardViewModel()
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            DealCard(cardViewModel: cardViewModel)
         }
         .padding()
+        .onAppear {
+            cardViewModel.loadDeals()
+        }
     }
 }
 
