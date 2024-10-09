@@ -2,11 +2,14 @@ import SwiftUI
 
 struct DealCard: View {
     @ObservedObject var cardViewModel: DealCardViewModel
+    @State private var isFavorite = false
     
+    var deal: Deal
+
     var body: some View {
         VStack {
-            if let deal = cardViewModel.dealResult,
-               let imageUrl = URL(string: "https://images.socialdeal.nl" + deal.image) {
+            // Deal Image
+            if let imageUrl = URL(string: "https://images.socialdeal.nl" + deal.image) {
                 AsyncImage(url: imageUrl) { image in
                     image
                         .resizable()
@@ -21,84 +24,53 @@ struct DealCard: View {
                 Color.gray.frame(height: 200)
             }
             
-            if let deal = cardViewModel.dealResult {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(deal.title)
-                        .font(.headline)
-                        .foregroundColor(.black)
+            // Deal Information
+            VStack(alignment: .leading, spacing: 8) {
+                Text(deal.title)
+                    .font(.headline)
+                    .foregroundColor(.black)
+                
+                Text(deal.company)
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                
+                Text(deal.city)
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                
+                HStack {
+                    Text(deal.soldLabel)
+                        .font(.footnote)
+                        .foregroundColor(.blue)
+                    Spacer()
                     
-                    Text(deal.company)
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                    
-                    Text(deal.city)
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                    
-                    HStack {
-                        Text(deal.soldLabel)
-                            .font(.footnote)
-                            .foregroundColor(.blue)
-                        Spacer()
-                    }
-                    
-                    HStack {
-                        Text(String(format: "€%.2f", (deal.prices.fromPrice?.amount ?? 0) / 100))
-                            .font(.subheadline)
-                            .strikethrough()
-                            .foregroundColor(.gray)
-                        
-                        Text(String(format: "€%.2f", (deal.prices.price?.amount) ?? 0 / 100))
+                    // Favorite Button (Heart Icon)
+                    Button(action: {
+                        isFavorite.toggle()
+                    }) {
+                        Image(systemName: isFavorite ? "heart.fill" : "heart")
+                            .foregroundColor(isFavorite ? .red : .gray)
                             .font(.title3)
-                            .foregroundColor(.green)
-                            .bold()
                     }
                 }
-                .padding()
-                .background(Color.white)
-            } else {
-                // Placeholder view if the deal data isn't available
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Deal title")
-                        .font(.headline)
-                        .foregroundColor(.black)
-                    
-                    Text("Company name")
+                
+                HStack {
+                    Text(String(format: "€%.2f", (deal.prices.fromPrice?.amount ?? 0) / 100))
                         .font(.subheadline)
+                        .strikethrough()
                         .foregroundColor(.gray)
                     
-                    Text("City")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                    
-                    HStack {
-                        Text("Verkocht: 0")
-                            .font(.footnote)
-                            .foregroundColor(.blue)
-                        Spacer()
-                    }
-                    
-                    HStack {
-                        Text("€0.00")
-                            .font(.subheadline)
-                            .strikethrough()
-                            .foregroundColor(.gray)
-                        
-                        Text("€0.00")
-                            .font(.title3)
-                            .foregroundColor(.green)
-                            .bold()
-                    }
+                    Text(String(format: "€%.2f", (deal.prices.price?.amount) ?? 0 / 100))
+                        .font(.title3)
+                        .foregroundColor(.green)
+                        .bold()
                 }
-                .padding()
-                .background(Color.white)
             }
+            .padding()
+            .background(Color.white)
         }
         .cornerRadius(10)
         .shadow(radius: 5)
         .padding()
-        .onAppear {
-            cardViewModel.loadDeals()
-        }
     }
 }

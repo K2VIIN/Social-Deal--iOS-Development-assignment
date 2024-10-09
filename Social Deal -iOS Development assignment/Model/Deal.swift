@@ -3,7 +3,7 @@ struct DealResponse: Codable {
     let deals: [Deal]
 }
 
-struct Deal: Codable {
+struct Deal: Codable, Equatable {
     let unique: String
     let title: String
     let image: String
@@ -16,6 +16,10 @@ struct Deal: Codable {
         case unique, title, image
         case soldLabel = "sold_label"
         case company, city, prices
+    }
+    
+    static func ==(lhs: Deal, rhs: Deal) -> Bool {
+        return lhs.unique == rhs.unique
     }
 }
 

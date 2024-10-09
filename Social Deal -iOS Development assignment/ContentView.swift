@@ -1,19 +1,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var cardViewModel = DealCardViewModel()
+    @ObservedObject var cardViewModel = DealCardViewModel()
 
     var body: some View {
-        VStack {
-            DealCard(cardViewModel: cardViewModel)
-        }
-        .padding()
-        .onAppear {
-            cardViewModel.loadDeals()
+        NavigationView {
+            ScrollView {
+                LazyVStack(spacing: 16) {
+                    ForEach(cardViewModel.deals, id: \.unique) { deal in
+                        DealCard(cardViewModel: cardViewModel, deal: deal)
+                            .onAppear {
+                                if deal == cardViewModel.deals.last {
+                                    cardViewModel.loadDeals()
+                                }
+                            }
+                    }
+                }
+                .padding()
+            }
+            .navigationTitle("Deals")
+            .onAppear {
+                cardViewModel.loadDeals()
+            }
         }
     }
-}
-
-#Preview {
-    ContentView()
 }
