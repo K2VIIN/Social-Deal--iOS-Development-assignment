@@ -2,14 +2,14 @@ import SwiftUI
 
 struct DealCard: View {
     @ObservedObject var cardViewModel: DealCardViewModel
+    @ObservedObject var favoritesViewModel: FavoritesViewModel
     @State private var isFavorite = false
     
     var deal: Deal
-
+    
     var body: some View {
         VStack {
-            // Deal Image
-            if let imageUrl = URL(string: "https://images.socialdeal.nl" + deal.image) {
+            if let imageUrl = URL(string: "https://images.socialdeal.nl" + (deal.image ?? "No image available")) {
                 AsyncImage(url: imageUrl) { image in
                     image
                         .resizable()
@@ -44,12 +44,11 @@ struct DealCard: View {
                         .foregroundColor(.blue)
                     Spacer()
                     
-                    // Favorite Button (Heart Icon)
                     Button(action: {
-                        isFavorite.toggle()
+                        favoritesViewModel.toggleFavorite(deal: deal)
                     }) {
-                        Image(systemName: isFavorite ? "heart.fill" : "heart")
-                            .foregroundColor(isFavorite ? .red : .gray)
+                        Image(systemName: favoritesViewModel.isFavorite(deal: deal) ? "heart.fill" : "heart")
+                            .foregroundColor(favoritesViewModel.isFavorite(deal: deal) ? .red : .gray)
                             .font(.title3)
                     }
                 }
@@ -60,7 +59,7 @@ struct DealCard: View {
                         .strikethrough()
                         .foregroundColor(.gray)
                     
-                    Text(String(format: "€%.2f", (deal.prices.price?.amount) ?? 0 / 100))
+                    Text(String(format: "€%.2f", (deal.prices.price?.amount ?? 0) / 100))
                         .font(.title3)
                         .foregroundColor(.green)
                         .bold()

@@ -11,6 +11,10 @@
 		3613C2612CB45DA5004366ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3613C2602CB45DA5004366ED /* ContentView.swift */; };
 		3613C2632CB45DA6004366ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3613C2622CB45DA6004366ED /* Assets.xcassets */; };
 		3613C2662CB45DA6004366ED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3613C2652CB45DA6004366ED /* Preview Assets.xcassets */; };
+		3693AC9A2CB6DB02003261F1 /* DealDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693AC992CB6DB02003261F1 /* DealDetail.swift */; };
+		3693AC9C2CB6DB20003261F1 /* DealDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693AC9B2CB6DB20003261F1 /* DealDetailViewModel.swift */; };
+		3693ACA32CB6DEBA003261F1 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693ACA22CB6DEBA003261F1 /* FavoritesViewModel.swift */; };
+		3693ACA52CB6DEDF003261F1 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693ACA42CB6DEDF003261F1 /* FavoritesView.swift */; };
 		36AAE5A82CB461A40062C9E5 /* Deal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AAE5A72CB461A40062C9E5 /* Deal.swift */; };
 		36AAE5AA2CB462FE0062C9E5 /* DealCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AAE5A92CB462FE0062C9E5 /* DealCard.swift */; };
 		36AAE5AD2CB46A970062C9E5 /* DealCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AAE5AC2CB46A970062C9E5 /* DealCardViewModel.swift */; };
@@ -22,6 +26,10 @@
 		3613C2602CB45DA5004366ED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3613C2622CB45DA6004366ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3613C2652CB45DA6004366ED /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3693AC992CB6DB02003261F1 /* DealDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealDetail.swift; sourceTree = "<group>"; };
+		3693AC9B2CB6DB20003261F1 /* DealDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealDetailViewModel.swift; sourceTree = "<group>"; };
+		3693ACA22CB6DEBA003261F1 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		3693ACA42CB6DEDF003261F1 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		36AAE5A72CB461A40062C9E5 /* Deal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deal.swift; sourceTree = "<group>"; };
 		36AAE5A92CB462FE0062C9E5 /* DealCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealCard.swift; sourceTree = "<group>"; };
 		36AAE5AC2CB46A970062C9E5 /* DealCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealCardViewModel.swift; sourceTree = "<group>"; };
@@ -57,6 +65,7 @@
 		3613C25D2CB45DA5004366ED /* Social Deal -iOS Development assignment */ = {
 			isa = PBXGroup;
 			children = (
+				3693AC9F2CB6DE4F003261F1 /* Helper */,
 				36AAE5AB2CB46A7C0062C9E5 /* ViewModel */,
 				36AAE5A62CB461610062C9E5 /* Model */,
 				36AAE5A52CB461550062C9E5 /* Components */,
@@ -64,6 +73,7 @@
 				3613C2602CB45DA5004366ED /* ContentView.swift */,
 				3613C2622CB45DA6004366ED /* Assets.xcassets */,
 				3613C2642CB45DA6004366ED /* Preview Content */,
+				3693ACA42CB6DEDF003261F1 /* FavoritesView.swift */,
 			);
 			path = "Social Deal -iOS Development assignment";
 			sourceTree = "<group>";
@@ -76,10 +86,18 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		3693AC9F2CB6DE4F003261F1 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		36AAE5A52CB461550062C9E5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				36AAE5A92CB462FE0062C9E5 /* DealCard.swift */,
+				3693AC992CB6DB02003261F1 /* DealDetail.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -96,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				36AAE5AC2CB46A970062C9E5 /* DealCardViewModel.swift */,
+				3693AC9B2CB6DB20003261F1 /* DealDetailViewModel.swift */,
+				3693ACA22CB6DEBA003261F1 /* FavoritesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -171,10 +191,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				36AAE5A82CB461A40062C9E5 /* Deal.swift in Sources */,
+				3693AC9C2CB6DB20003261F1 /* DealDetailViewModel.swift in Sources */,
+				3693ACA32CB6DEBA003261F1 /* FavoritesViewModel.swift in Sources */,
 				36AAE5AA2CB462FE0062C9E5 /* DealCard.swift in Sources */,
+				3693AC9A2CB6DB02003261F1 /* DealDetail.swift in Sources */,
 				3613C2612CB45DA5004366ED /* ContentView.swift in Sources */,
 				36AAE5AD2CB46A970062C9E5 /* DealCardViewModel.swift in Sources */,
 				3613C25F2CB45DA5004366ED /* Social_Deal__iOS_Development_assignmentApp.swift in Sources */,
+				3693ACA52CB6DEDF003261F1 /* FavoritesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

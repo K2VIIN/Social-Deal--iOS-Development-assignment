@@ -6,15 +6,17 @@ struct DealResponse: Codable {
 struct Deal: Codable, Equatable {
     let unique: String
     let title: String
-    let image: String
+    let image: String?
     let soldLabel: String
     let company: String
     let city: String
+    let description: String?
     let prices: Prices
     
     enum CodingKeys: String, CodingKey {
         case unique, title, image
         case soldLabel = "sold_label"
+        case description = "description"
         case company, city, prices
     }
     
