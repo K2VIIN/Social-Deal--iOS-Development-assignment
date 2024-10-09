@@ -24,7 +24,6 @@ struct DealCard: View {
                 Color.gray.frame(height: 200)
             }
             
-            // Deal Information
             VStack(alignment: .leading, spacing: 8) {
                 Text(deal.title)
                     .font(.headline)

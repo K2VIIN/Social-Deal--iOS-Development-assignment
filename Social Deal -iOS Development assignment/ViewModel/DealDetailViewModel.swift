@@ -4,10 +4,12 @@ import Combine
 class DealDetailViewModel: ObservableObject {
     @Published var deal: Deal?
     private var cancellables = Set<AnyCancellable>()
-    
+
     func loadDealDetail(id: String) {
         let detailURL = URL(string: "https://media.socialdeal.nl/demo/details.json?id=\(id)")!
         
+        cancellables.removeAll()
+
         URLSession.shared.dataTaskPublisher(for: detailURL)
             .map { $0.data }
             .decode(type: Deal.self, decoder: JSONDecoder())

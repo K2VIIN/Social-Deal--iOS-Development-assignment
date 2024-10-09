@@ -10,7 +10,7 @@ struct ContentView: View {
                 ScrollView {
                     LazyVStack(spacing: 16) {
                         ForEach(cardViewModel.deals, id: \.unique) { deal in
-                            NavigationLink(destination: DealDetail(detailViewModel: DealDetailViewModel(), dealId: deal.unique)) {
+                            NavigationLink(destination: DealDetail(dealId: deal.unique)) {
                                 DealCard(cardViewModel: DealCardViewModel(), favoritesViewModel: favoritesViewModel, deal: deal)
                                     .contextMenu {
                                         Button(action: {
@@ -38,7 +38,7 @@ struct ContentView: View {
                 Label("Deals", systemImage: "list.bullet")
             }
 
-            FavoritesView(favoritesViewModel: favoritesViewModel) // Add your favorites view
+            FavoritesView(favoritesViewModel: favoritesViewModel) 
                 .tabItem {
                     Label("Favorites", systemImage: "star")
                 }

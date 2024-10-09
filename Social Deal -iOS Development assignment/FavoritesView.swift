@@ -8,14 +8,16 @@ struct FavoritesView: View {
             ScrollView {
                 LazyVStack(spacing: 16) {
                     ForEach(favoritesViewModel.favoriteDeals, id: \.unique) { deal in
-                        DealCard(cardViewModel: DealCardViewModel(), favoritesViewModel: favoritesViewModel, deal: deal)
-                            .contextMenu {
-                                Button(action: {
-                                    favoritesViewModel.toggleFavorite(deal: deal)
-                                }) {
-                                    Text("Remove from Favorites")
+                        NavigationLink(destination: DealDetail(dealId: deal.unique)) {
+                            DealCard(cardViewModel: DealCardViewModel(), favoritesViewModel: favoritesViewModel, deal: deal)
+                                .contextMenu {
+                                    Button(action: {
+                                        favoritesViewModel.toggleFavorite(deal: deal)
+                                    }) {
+                                        Text("Remove from Favorites")
+                                    }
                                 }
-                            }
+                        }
                     }
                 }
                 .padding()
