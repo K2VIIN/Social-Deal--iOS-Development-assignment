@@ -31,14 +31,17 @@ struct ContentView: View {
                 }
                 .navigationTitle("Deals")
                 .onAppear {
-                    cardViewModel.loadDeals()
+                    // Load initial batch of deals if not already loaded
+                    if cardViewModel.deals.isEmpty {
+                        cardViewModel.loadDeals()
+                    }
                 }
             }
             .tabItem {
                 Label("Deals", systemImage: "list.bullet")
             }
 
-            FavoritesView(favoritesViewModel: favoritesViewModel) 
+            FavoritesView(favoritesViewModel: favoritesViewModel)
                 .tabItem {
                     Label("Favorites", systemImage: "star")
                 }
